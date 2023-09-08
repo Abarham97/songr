@@ -38,4 +38,16 @@ The `Album` class represents an album with the following attributes:
 - Thymeleaf HTML template for displaying a list of albums.
 - Used by the `AlbumController` to render the album list.
 
+##  Add Album Route
+
+A new route has been added to the `AlbumController` to handle the creation of new albums. The route is as follows:
+
+## add ID 
+
+ ID has been added to the Album class with it annotation @ID
+
+## ADD Form
+
+the form and it css has been added to the ALBUM.HTML
+
 
