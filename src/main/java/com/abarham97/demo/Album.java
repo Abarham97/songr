@@ -1,13 +1,39 @@
-package com.Abarham97.songr;
+package com.abarham97.demo;
+
+import org.springframework.stereotype.Service;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
+import javax.persistence.Id;
+
+@Entity
 
 public class Album {
+
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank(message = "Title must not be blank")
     private String title;
+    @NotBlank(message = "artist must not be blank")
     private String artist;
+    @Positive(message = "Song count must be a positive number")
     private int songCount;
+    @Positive(message = "length must be a positive number")
     private int length;
+
+    @NotBlank(message = "artist must not be blank")
     private String imageUrl;
 
+    public Album() {
 
+    }
 
     public Album(String title, String artist, int songCount, int length, String imageUrl) {
         this.title = title;
@@ -17,42 +43,60 @@ public class Album {
         this.imageUrl=imageUrl;
     }
     public String getTitle() {
+
         return title;
     }
 
     public void setTitle(String title) {
+
         this.title = title;
     }
 
     public String getArtist() {
+
         return artist;
     }
 
     public void setArtist(String artist) {
+
         this.artist = artist;
     }
 
     public int getSongCount() {
+
         return songCount;
     }
 
     public void setSongCount(int songCount) {
+
         this.songCount = songCount;
     }
 
     public int getLength() {
+
         return length;
     }
 
     public void setLength(int length) {
+
         this.length = length;
     }
 
     public String getImageUrl() {
+
         return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
+
         this.imageUrl = imageUrl;
+    }
+    public Long getId() {
+
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
