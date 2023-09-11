@@ -1,6 +1,7 @@
 package com.abarham97.demo;
 
 
+import com.abarham97.demo.Reposatary.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class AlbumController {
 
     @Autowired
     AlbumRepository albumRepository;
+    @Autowired
+    SongRepository SongRepository;
 
 //    @GetMapping("/albums")
 //    public String listAlbums(Model model) {
@@ -44,16 +47,16 @@ public class AlbumController {
         model.addAttribute("albums", albums);
         return "album";
     }
-    @GetMapping("/album/{id}")
-    public String getAlbum(@PathVariable Long id, Model model) {
-        Optional<Album> album = albumRepository.findById(id);
-        if (album.isPresent()) {
-            model.addAttribute("album", album.get());
-        } else {
-            return "ID is not defines ";
-        }
-        return "album-details";
-    }
+//    @GetMapping("/album/{id}")
+//    public String getAlbum(@PathVariable Long id, Model model) {
+//        Optional<Album> album = albumRepository.findById(id);
+//        if (album.isPresent()) {
+//            model.addAttribute("album", album.get());
+//        } else {
+//            return "ID is not defines ";
+//        }
+//        return "album-details";
+//    }
 
     @PostMapping("/albums/add")
     public String addAlbum(@Valid @ModelAttribute Album album, BindingResult bindingResult,RedirectAttributes redirectAttributes) {
@@ -61,7 +64,8 @@ public class AlbumController {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.album", bindingResult);
-            redirectAttributes.addFlashAttribute("album", album); // To populate the form fields with user input
+            redirectAttributes.addFlashAttribute("album", album);
+            System.out.println("we are here");
             return "redirect:/albums";
         }
 
@@ -72,8 +76,24 @@ public class AlbumController {
     }
     @PostMapping("/album/delete/{id}")
     public String deleteAlbum(@PathVariable Long id, Model model) {
+        Optional<Song> songs = SongRepository.findById(id);
+        SongRepository.deleteAll();
         albumRepository.deleteById(id);
         return "redirect:/albums";
+    }
+
+    @GetMapping("/album/{id}")
+    public String viewAlbumSongs(@PathVariable Long id, Model model) {
+        Optional<Album> album = albumRepository.findById(id);
+        if (album.isPresent()) {
+            Optional<Song> songs = SongRepository.findById(id);;
+            model.addAttribute("album", album.get());
+            model.addAttribute("songs", songs);
+            return "songs";
+        } else {
+
+            return "error";
+        }
     }
 
 }

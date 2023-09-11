@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Songs.css">
+
+    <title>Album Songs</title>
+</head>
+<body>
+<h1>Songs for Album: <span th:text="${album.title}"></span></h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Length</th>
+        <th>Track Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song : ${songs}">
+        <td>
+            <span th:if="${song.isPresent()}" th:text="${song.get().title}"></span>
+            <span th:if="${not song.isPresent()}">N/A</span>
+        </td>
+        <td>
+            <span th:if="${song.isPresent()}" th:text="${song.get().length}"></span>
+            <span th:if="${not song.isPresent()}">N/A</span>
+        </td>
+        <td>
+            <span th:if="${song.isPresent()}" th:text="${song.get().tracknumber}"></span>
+            <span th:if="${not song.isPresent()}">N/A</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

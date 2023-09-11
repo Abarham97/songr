@@ -2,13 +2,9 @@ package com.abarham97.demo;
 
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
-
-import javax.persistence.Id;
 
 @Entity
 
@@ -28,7 +24,8 @@ public class Album {
     @Positive(message = "length must be a positive number")
     private int length;
 
-    @NotBlank(message = "artist must not be blank")
+    @NotBlank(message = "imageUrl must not be blank")
+    @Column(name = "image_url", length = 512)
     private String imageUrl;
 
     public Album() {

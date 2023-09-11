@@ -50,4 +50,31 @@ A new route has been added to the `AlbumController` to handle the creation of ne
 
 the form and it css has been added to the ALBUM.HTML
 
+## Song Interface 
+
+to integrate the method from JpaRepository
+##  Song Class
+
+The `Album` class represents an album with the following attributes:
+- `title`: The title of the album.
+- `tracknumber`: The name of the artist or band.
+- `length`: The length of the album in seconds.
+
+## Song Controller 
+-/song to view the song 
+- /song/add to add song to the database 
+- /song/delete/{id} to delete song from the database 
+
+## song HTML 
+
+has the form to add a song and to view the songs 
+
+## Songs HTML
+
+to view the Songs that realted to particular album
+
+
+
+
+
 

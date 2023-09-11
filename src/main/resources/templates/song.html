@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Album.css">
+    <title>Album</title>
+</head>
+<body>
+
+
+<form action="/song/add" method="post">
+
+    title: <input type="text" name="title" placeholder=" Title" required>
+    length:<input type="text" name="length" placeholder="length" required>
+    tracknumber: <input type="text" name="tracknumber" placeholder="tracknumber" required>
+    Album:
+    <select name="albumId" required>
+        <option value="">-- Select an Album --</option>
+
+        <th:block th:each="album : ${albums}">
+            <option th:value="${album.id}" th:text="${album.title}"></option>
+        </th:block>
+    </select><br>
+
+
+    <button type="submit">Add Song</button>
+</form>
+
+<!--<form th:action="@{/album/delete/{id}(id=${album.id})}" method="post">-->
+<!--  <input type="hidden" name="_method" value="delete">-->
+<!--  <button type="submit">Delete</button>-->
+<!--</form>-->
+
+<h1>Song List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>length</th>
+        <th>tracknumber </th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="song : ${song}">
+        <td th:text="${song.title}"></td>
+        <td th:text="${song.length}">
+         </td>
+
+        <td th:text="${song.tracknumber}"></td>
+        <td>
+
+            <form th:action="@{'/song/delete/' + ${song.id}}" method="post" class="delete-form">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

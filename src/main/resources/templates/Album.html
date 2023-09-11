@@ -34,6 +34,8 @@
     <th>Song Count</th>
     <th>Length</th>
     <th>Image</th>
+    <th>View</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody>
@@ -43,7 +45,16 @@
     <td th:text="${album.artist}"></td>
     <td th:text="${album.songCount}"></td>
     <td th:text="${album.length}"></td>
-    <td><img alt="Album Cover" th:src="${album.imageUrl}" width="100"></td>
+    <td><img alt="Album Cover" th:src="@{${album.imageUrl}}" width="100"></td>
+    <td>
+      <a th:href="@{'/album/' + ${album.id}}" class="view-songs-link">View Songs</a>
+    </td>
+    <td>
+      <form th:action="@{'/album/delete/' + ${album.id}}" method="post" class="delete-form">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
   </tr>
   </tbody>
 </table>
