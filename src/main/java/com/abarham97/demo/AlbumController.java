@@ -65,7 +65,7 @@ public class AlbumController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.album", bindingResult);
             redirectAttributes.addFlashAttribute("album", album);
-            System.out.println("we are here");
+
             return "redirect:/albums";
         }
 
@@ -86,7 +86,7 @@ public class AlbumController {
     public String viewAlbumSongs(@PathVariable Long id, Model model) {
         Optional<Album> album = albumRepository.findById(id);
         if (album.isPresent()) {
-            Optional<Song> songs = SongRepository.findById(id);;
+            List<Song> songs = SongRepository.findSongsByAlbumId(id);
             model.addAttribute("album", album.get());
             model.addAttribute("songs", songs);
             return "songs";

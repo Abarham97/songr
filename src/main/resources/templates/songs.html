@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>Songs for Album: <span th:text="${album.title}"></span></h1>
+
 <table>
     <thead>
     <tr>
@@ -18,20 +19,36 @@
     </thead>
     <tbody>
     <tr th:each="song : ${songs}">
-        <td>
-            <span th:if="${song.isPresent()}" th:text="${song.get().title}"></span>
-            <span th:if="${not song.isPresent()}">N/A</span>
-        </td>
-        <td>
-            <span th:if="${song.isPresent()}" th:text="${song.get().length}"></span>
-            <span th:if="${not song.isPresent()}">N/A</span>
-        </td>
-        <td>
-            <span th:if="${song.isPresent()}" th:text="${song.get().tracknumber}"></span>
-            <span th:if="${not song.isPresent()}">N/A</span>
-        </td>
+        <td th:text="${song.title}">N/A</td>
+        <td th:text="${song.length}">N/A</td>
+        <td th:text="${song.tracknumber}">N/A</td>
     </tr>
     </tbody>
 </table>
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Title</th>-->
+<!--        <th>Length</th>-->
+<!--        <th>Track Number</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="song : ${songs}">-->
+<!--        <td>-->
+<!--            <span th:if="${song.isPresent()}" th:text="${song.title}"></span>-->
+<!--            <span th:if="${not song.isPresent()}">N/A</span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <span th:if="${song.isPresent()}" th:text="${song.length}"></span>-->
+<!--            <span th:if="${not song.isPresent()}">N/A</span>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <span th:if="${song.isPresent()}" th:text="${song.tracknumber}"></span>-->
+<!--            <span th:if="${not song.isPresent()}">N/A</span>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 </body>
 </html>
